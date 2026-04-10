@@ -1,3 +1,4 @@
+//
 <?php
 
 use Illuminate\Support\Facades\Route;
@@ -28,4 +29,3 @@ Route::get('/katalog', function () {
 Route::get('/bantuan', function () {
     return view('bantuan');
 });
-//

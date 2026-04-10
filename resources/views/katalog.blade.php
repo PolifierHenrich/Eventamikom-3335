@@ -10,10 +10,10 @@
 
     <div class="max-w-5xl mx-auto">
         <nav class="bg-white rounded-2xl shadow-sm border border-slate-200 mb-8 p-3 flex justify-center gap-2 md:gap-4">
-            <a href="/" class="px-5 py-2.5 rounded-xl text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition font-medium">Home</a>
-            <a href="/profil" class="px-5 py-2.5 rounded-xl text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition font-medium">Profil</a>
+            <a href="/" class="px-5 py-2.5 rounded-xl text-slate-600 hover:bg-slate-50 transition font-medium">Home</a>
+            <a href="/profil" class="px-5 py-2.5 rounded-xl text-slate-600 hover:bg-slate-50 transition font-medium">Profil</a>
             <a href="/katalog" class="px-5 py-2.5 rounded-xl bg-indigo-50 text-indigo-700 font-semibold transition">Katalog</a>
-            <a href="/bantuan" class="px-5 py-2.5 rounded-xl text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition font-medium">Bantuan</a>
+            <a href="/bantuan" class="px-5 py-2.5 rounded-xl text-slate-600 hover:bg-slate-50 transition font-medium">Bantuan</a>
         </nav>
 
         <div class="mb-8 text-center">
@@ -38,7 +38,7 @@
                 </div>
                 <h2 class="text-xl font-bold text-slate-900">UI/UX dengan Figma</h2>
                 <p class="text-sm text-slate-500 mt-1">15 Mei 2026 • 13:00 WIB</p>
-                <p class="text-slate-600 mt-3 text-sm">Tingkatkan skill desain antarmuka dan pengalaman pengguna untuk pemula.</p>
+                <p class="text-slate-600 mt-3 text-sm">Tingkatkan skill desain antarmuka untuk pemula.</p>
                 <button class="mt-4 w-full bg-indigo-600 text-white font-medium py-2 rounded-xl hover:bg-indigo-700 transition">Daftar Sekarang</button>
             </div>
 
@@ -48,7 +48,7 @@
                 </div>
                 <h2 class="text-xl font-bold text-slate-900">Hackathon Amikom</h2>
                 <p class="text-sm text-slate-500 mt-1">20 Mei 2026 • 08:00 WIB</p>
-                <p class="text-slate-600 mt-3 text-sm">Adu skill programming dalam 24 jam dan menangkan total hadiah jutaan rupiah.</p>
+                <p class="text-slate-600 mt-3 text-sm">Adu skill programming dalam 24 jam dan menangkan hadiah.</p>
                 <button class="mt-4 w-full border border-slate-300 text-slate-700 font-medium py-2 rounded-xl hover:bg-slate-50 transition">Lihat Detail</button>
             </div>
         </div>

@@ -10,10 +10,10 @@
 
     <div class="max-w-4xl mx-auto">
         <nav class="bg-white rounded-2xl shadow-sm border border-slate-200 mb-8 p-3 flex justify-center gap-2 md:gap-4">
-            <a href="/" class="px-5 py-2.5 rounded-xl text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition font-medium">Home</a>
+            <a href="/" class="px-5 py-2.5 rounded-xl text-slate-600 hover:bg-slate-50 transition font-medium">Home</a>
             <a href="/profil" class="px-5 py-2.5 rounded-xl bg-indigo-50 text-indigo-700 font-semibold transition">Profil</a>
-            <a href="/katalog" class="px-5 py-2.5 rounded-xl text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition font-medium">Katalog</a>
-            <a href="/bantuan" class="px-5 py-2.5 rounded-xl text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition font-medium">Bantuan</a>
+            <a href="/katalog" class="px-5 py-2.5 rounded-xl text-slate-600 hover:bg-slate-50 transition font-medium">Katalog</a>
+            <a href="/bantuan" class="px-5 py-2.5 rounded-xl text-slate-600 hover:bg-slate-50 transition font-medium">Bantuan</a>
         </nav>
 
         <div class="bg-white rounded-3xl shadow-sm border border-slate-200 overflow-hidden max-w-lg mx-auto">

@@ -3,7 +3,6 @@ NIM: 24.12.3335
 Nama: Wijdan Ula Rizki
 
 # Laravel Cloud
-
 Tugas 1 : https://eventamikom-3335-main-oakxz4.free.laravel.cloud/
 
 Home : https://eventamikom-3335-main-oakxz4.free.laravel.cloud/

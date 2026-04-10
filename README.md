@@ -2,8 +2,9 @@
 NIM: 24.12.3335
 Nama: Wijdan Ula Rizki
 
-# Live Demo
-https://eventamikom-3335-main-oakxz4.free.laravel.cloud/
+# Live DemO
+
+Tugas 1 : https://eventamikom-3335-main-oakxz4.free.laravel.cloud/
 
 Home : https://eventamikom-3335-main-oakxz4.free.laravel.cloud/
 

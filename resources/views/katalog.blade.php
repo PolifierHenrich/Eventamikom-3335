@@ -3,53 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Katalog Event</title>
+    <title>Katalog - Amikom Event Hub</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-slate-100 text-slate-800 font-sans antialiased min-h-screen p-4 md:p-8">
+<body class="bg-gradient-to-br from-indigo-100 via-white to-cyan-100 p-8 font-sans min-h-screen flex flex-col items-center">
 
-    <div class="max-w-5xl mx-auto">
-        <nav class="bg-white rounded-2xl shadow-sm border border-slate-200 mb-8 p-3 flex justify-center gap-2 md:gap-4">
-            <a href="/" class="px-5 py-2.5 rounded-xl text-slate-600 hover:bg-slate-50 transition font-medium">Home</a>
-            <a href="/profil" class="px-5 py-2.5 rounded-xl text-slate-600 hover:bg-slate-50 transition font-medium">Profil</a>
-            <a href="/katalog" class="px-5 py-2.5 rounded-xl bg-indigo-50 text-indigo-700 font-semibold transition">Katalog</a>
-            <a href="/bantuan" class="px-5 py-2.5 rounded-xl text-slate-600 hover:bg-slate-50 transition font-medium">Bantuan</a>
-        </nav>
+    <nav class="flex flex-wrap gap-4 mb-10 justify-center w-full max-w-4xl">
+        <a href="/" class="px-6 py-2.5 bg-white/80 backdrop-blur-sm text-indigo-600 font-semibold rounded-lg shadow-sm hover:bg-white transition border border-indigo-100">Home</a>
+        <a href="/tentang" class="px-6 py-2.5 bg-white/80 backdrop-blur-sm text-indigo-600 font-semibold rounded-lg shadow-sm hover:bg-white transition border border-indigo-100">Tentang</a>
+        <a href="/profil" class="px-6 py-2.5 bg-white/80 backdrop-blur-sm text-indigo-600 font-semibold rounded-lg shadow-sm hover:bg-white transition border border-indigo-100">Profil</a>
+        <a href="/katalog" class="px-6 py-2.5 bg-indigo-600 text-white font-semibold rounded-lg shadow-md transition">Katalog</a>
+        <a href="/bantuan" class="px-6 py-2.5 bg-white/80 backdrop-blur-sm text-indigo-600 font-semibold rounded-lg shadow-sm hover:bg-white transition border border-indigo-100">Bantuan</a>
+        <a href="/kontak" class="px-6 py-2.5 bg-white/80 backdrop-blur-sm text-indigo-600 font-semibold rounded-lg shadow-sm hover:bg-white transition border border-indigo-100">Kontak</a>
+    </nav>
 
-        <div class="mb-8 text-center">
-            <h1 class="text-3xl font-bold text-slate-900">Katalog Event</h1>
-            <p class="text-slate-500 mt-2">Pilih dan ikuti event menarik di kampus.</p>
-        </div>
+    <div class="max-w-4xl w-full bg-white/90 backdrop-blur-lg p-12 rounded-3xl shadow-xl border border-white/50 text-center">
+        <h1 class="text-3xl md:text-4xl font-extrabold text-slate-800 mb-10">Katalog Event</h1>
         
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-5 hover:shadow-md transition">
-                <div class="h-32 bg-blue-100 rounded-xl mb-4 flex items-center justify-center">
-                    <span class="text-blue-500 font-semibold">💻 Workshop IT</span>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-left">
+            <div class="bg-white p-6 md:p-8 rounded-2xl shadow-sm hover:shadow-lg transition border border-slate-100 group">
+                <div class="h-40 bg-gradient-to-r from-indigo-100 to-blue-50 rounded-xl mb-6 flex items-center justify-center group-hover:from-indigo-200 group-hover:to-blue-100 transition">
+                    <span class="text-indigo-500 font-medium text-lg">Gambar Event 1</span>
                 </div>
-                <h2 class="text-xl font-bold text-slate-900">Laravel Dasar</h2>
-                <p class="text-sm text-slate-500 mt-1">12 Mei 2026 • 09:00 WIB</p>
-                <p class="text-slate-600 mt-3 text-sm">Belajar membuat website dari nol menggunakan framework PHP terpopuler.</p>
-                <button class="mt-4 w-full bg-indigo-600 text-white font-medium py-2 rounded-xl hover:bg-indigo-700 transition">Daftar Sekarang</button>
+                <h2 class="text-2xl font-bold text-slate-800">Seminar Teknologi Web</h2>
+                <p class="text-slate-500 mt-3 text-base leading-relaxed">Pahami dasar Laravel dan Tailwind CSS untuk masa depan karir web developer.</p>
             </div>
 
-            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-5 hover:shadow-md transition">
-                <div class="h-32 bg-purple-100 rounded-xl mb-4 flex items-center justify-center">
-                    <span class="text-purple-500 font-semibold">🎨 Seminar Desain</span>
+            <div class="bg-white p-6 md:p-8 rounded-2xl shadow-sm hover:shadow-lg transition border border-slate-100 group">
+                <div class="h-40 bg-gradient-to-r from-purple-100 to-pink-50 rounded-xl mb-6 flex items-center justify-center group-hover:from-purple-200 group-hover:to-pink-100 transition">
+                    <span class="text-purple-500 font-medium text-lg">Gambar Event 2</span>
                 </div>
-                <h2 class="text-xl font-bold text-slate-900">UI/UX dengan Figma</h2>
-                <p class="text-sm text-slate-500 mt-1">15 Mei 2026 • 13:00 WIB</p>
-                <p class="text-slate-600 mt-3 text-sm">Tingkatkan skill desain antarmuka untuk pemula.</p>
-                <button class="mt-4 w-full bg-indigo-600 text-white font-medium py-2 rounded-xl hover:bg-indigo-700 transition">Daftar Sekarang</button>
-            </div>
-
-            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-5 hover:shadow-md transition">
-                <div class="h-32 bg-emerald-100 rounded-xl mb-4 flex items-center justify-center">
-                    <span class="text-emerald-500 font-semibold">🚀 Kompetisi</span>
-                </div>
-                <h2 class="text-xl font-bold text-slate-900">Hackathon Amikom</h2>
-                <p class="text-sm text-slate-500 mt-1">20 Mei 2026 • 08:00 WIB</p>
-                <p class="text-slate-600 mt-3 text-sm">Adu skill programming dalam 24 jam dan menangkan hadiah.</p>
-                <button class="mt-4 w-full border border-slate-300 text-slate-700 font-medium py-2 rounded-xl hover:bg-slate-50 transition">Lihat Detail</button>
+                <h2 class="text-2xl font-bold text-slate-800">Workshop UI/UX</h2>
+                <p class="text-slate-500 mt-3 text-base leading-relaxed">Belajar membuat antarmuka yang user-friendly menggunakan platform Figma.</p>
             </div>
         </div>
     </div>

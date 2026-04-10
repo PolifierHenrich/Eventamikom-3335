@@ -29,6 +29,6 @@
             <p class="font-bold text-indigo-900 text-2xl italic">"Terhubung. Belajar. Berkembang."</p>
         </div>
     </div>
-
+//
 </body>
 </html>

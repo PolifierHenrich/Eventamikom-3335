@@ -5,6 +5,7 @@ Nama: Wijdan Ula Rizki
 # Laravel Cloud
 Tugas 1 : https://eventamikom-3335-main-oakxz4.free.laravel.cloud/
 
+# Tugas 2
 Home : https://eventamikom-3335-main-oakxz4.free.laravel.cloud/
 
 Profil : https://eventamikom-3335-main-oakxz4.free.laravel.cloud/profil

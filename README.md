@@ -17,6 +17,10 @@ Bantuan : https://eventamikom-3335-main-oakxz4.free.laravel.cloud/bantuan
 Kontak : https://eventamikom-3335-main-oakxz4.free.laravel.cloud/kontak
 
 # Tugas 2 
+
+Admin : https://eventamikom-3335-main-oakxz4.free.laravel.cloud/admin
+
+User : https://eventamikom-3335-main-oakxz4.free.laravel.cloud/home
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">

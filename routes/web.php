@@ -29,8 +29,16 @@ Route::get('/bantuan', function () {
     return view('bantuan');
 });
 
-// Halaman Beranda
-Route::get('/', [HomeController::class, 'index'])->name('home');
+// Halaman Default (Tugas Lama)
+Route::get('/', function () {
+    return view('welcome', [
+        'nama' => 'Wijdan Ula Rizki',
+        'nim'  => '24.12.3335',
+    ]);
+});
+
+// Halaman Beranda Event Hub (Tugas Baru)
+Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 // Halaman Detail Event
 Route::get('/event/1', [EventController::class, 'show'])->name('events.show');

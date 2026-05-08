@@ -29,6 +29,7 @@ Menambahkan database migration/seeding
 ELOQUENT ORM & CRUD
 Halaman Admin : 
 Dashboard Admin : https://eventamikom-3335-main-oakxz4.free.laravel.cloud/admin
+
 Halaman User : 
 https://eventamikom-3335-main-oakxz4.free.laravel.cloud/home
 

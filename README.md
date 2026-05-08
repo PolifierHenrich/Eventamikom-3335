@@ -19,6 +19,7 @@ Kontak : https://eventamikom-3335-main-oakxz4.free.laravel.cloud/kontak
 # Tugas 2 
 
 Admin : https://eventamikom-3335-main-oakxz4.free.laravel.cloud/admin
+User : https://eventamikom-3335-main-oakxz4.free.laravel.cloud/home
 
 # Tugas 3
 Menambahkan database migration/seeding
@@ -26,8 +27,8 @@ Menambahkan database migration/seeding
 # Tugas 4
 ELOQUENT ORM & CRUD
 Admin : 
-Dashboard Admin : http://127.0.0.1:8000/admin
-Admin Events : http://127.0.0.1:8000/admin/events
+Dashboard Admin : https://eventamikom-3335-main-oakxz4.free.laravel.cloud/admin
+Admin Events : 
 Admin Transaction : http://127.0.0.1:8000/admin/transactions
 
 User : 

@@ -49,13 +49,13 @@ Route::get('/checkout', [EventController::class, 'checkout'])->name('checkout');
 // Halaman E-Ticket
 Route::get('/my-ticket', [EventController::class, 'ticket'])->name('ticket');
 
-Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
+Route::prefix('admin')->name('admin.')->group(function () {
 
     // Dashboard Admin
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
-    // Kelola Event Admin
-    Route::get('/events', [AdminEventController::class, 'index'])->name('events.index');
+    // Kelola Event Admin - CRUD lengkap (Pertemuan 5)
+    Route::resource('events', AdminEventController::class);
 
     // Laporan Transaksi
     Route::get('/transactions', [TransactionController::class, 'index'])->name('transactions.index');

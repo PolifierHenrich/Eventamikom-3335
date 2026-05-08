@@ -1,6 +1,17 @@
 <?php
 
-use App\Http\Controllers\HomeController;
+use Illuminate\Support\Facades\Artisan;
+
+// ⚠️ TEMPORARY: Route untuk trigger migration di production - HAPUS SETELAH DIPAKAI
+Route::get('/run-migrate', function () {
+    Artisan::call('migrate', ['--force' => true]);
+    $migrateOutput = Artisan::output();
+    Artisan::call('db:seed', ['--force' => true]);
+    $seedOutput = Artisan::output();
+    return response('<pre>MIGRATE:<br>'.$migrateOutput.'<br>SEED:<br>'.$seedOutput.'</pre>');
+});
+
+
 use App\Http\Controllers\EventController;
 
 use Illuminate\Support\Facades\Route;

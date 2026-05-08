@@ -19,6 +19,7 @@ Kontak : https://eventamikom-3335-main-oakxz4.free.laravel.cloud/kontak
 # Tugas 2 
 
 Admin : https://eventamikom-3335-main-oakxz4.free.laravel.cloud/admin
+
 User : https://eventamikom-3335-main-oakxz4.free.laravel.cloud/home
 
 # Tugas 3

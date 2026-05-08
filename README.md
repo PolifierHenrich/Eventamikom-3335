@@ -23,6 +23,19 @@ Admin : https://eventamikom-3335-main-oakxz4.free.laravel.cloud/admin
 # Tugas 3
 Menambahkan database migration/seeding
 
+# Tugas 4
+ELOQUENT ORM & CRUD
+Admin : 
+Dashboard Admin : http://127.0.0.1:8000/admin
+Admin Events : http://127.0.0.1:8000/admin/events
+Admin Transaction : http://127.0.0.1:8000/admin/transactions
+
+User : 
+Dashboard User : http://127.0.0.1:8000/home
+User Events : http://127.0.0.1:8000/event/1
+User Checkout : http://127.0.0.1:8000/checkout
+User Ticket : http://127.0.0.1:8000/my-ticket
+
 User : https://eventamikom-3335-main-oakxz4.free.laravel.cloud/home
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 

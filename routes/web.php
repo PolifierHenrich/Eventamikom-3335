@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\EventController as AdminEventController;
 use App\Http\Controllers\Admin\TransactionController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\PartnerController;
 
 // =====================================================
 // TUGAS LAMA (Pertemuan sebelumnya)
@@ -37,11 +38,15 @@ Route::get('/bantuan', function () {
 // HALAMAN UTAMA
 // =====================================================
 
-// Halaman Default (Tugas Lama) - tetap seperti aslinya
+// Halaman Default (Tugas Lama) - ditambahkan data partner & kategori (Soal 4)
 Route::get('/', function () {
+    $partners   = \App\Models\Partner::latest()->get();
+    $categories = \App\Models\Category::all();
     return view('welcome', [
-        'nama' => 'Wijdan Ula Rizki',
-        'nim'  => '24.12.3335',
+        'nama'       => 'Wijdan Ula Rizki',
+        'nim'        => '24.12.3335',
+        'partners'   => $partners,
+        'categories' => $categories,
     ]);
 });
 
@@ -76,8 +81,11 @@ Route::prefix('admin')->name('admin.')->group(function () {
     // Laporan Transaksi
     Route::get('/transactions', [TransactionController::class, 'index'])->name('transactions.index');
 
-    // Kelola Kategori (Latihan Tugas Pertemuan 3)
-    Route::get('/categories', [CategoryController::class, 'index'])->name('categories.index');
+    // Kelola Kategori - CRUD lengkap (Soal 1 UTS)
+    Route::resource('categories', CategoryController::class);
+
+    // Kelola Partner - CRUD lengkap (Soal 2 UTS)
+    Route::resource('partners', PartnerController::class);
 });
 
 // =====================================================

@@ -63,7 +63,7 @@
                     </td>
                     <td class="px-8 py-6">
                         @if($partner->logo_url)
-                            <img src="{{ $partner->logo_url }}" alt="{{ $partner->name }}"
+                            <img src="{{ asset('storage/' . $partner->logo_url) }}" alt="{{ $partner->name }}"
                                  class="w-12 h-12 object-contain rounded-xl border border-slate-100 bg-white p-1"
                                  onerror="this.style.display='none'">
                         @else
@@ -76,9 +76,6 @@
                     </td>
                     <td class="px-8 py-6">
                         <p class="font-black text-slate-800">{{ $partner->name }}</p>
-                        @if($partner->logo_url)
-                            <p class="text-xs text-slate-400 truncate max-w-[200px]" title="{{ $partner->logo_url }}">{{ $partner->logo_url }}</p>
-                        @endif
                     </td>
                     <td class="px-8 py-6 text-sm text-slate-500">
                         {{ $partner->created_at->format('d M Y') }}

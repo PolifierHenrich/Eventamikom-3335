@@ -5,12 +5,11 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Partner;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class PartnerController extends Controller
 {
-    /**
-     * Soal 2 & 3 - READ + Search: Menampilkan daftar partner dengan pencarian.
-     */
+    // Tampilkan daftar partner + pencarian
     public function index(Request $request)
     {
         $search = $request->input('search');
@@ -25,59 +24,74 @@ class PartnerController extends Controller
         return view('admin.partners.index', compact('partners', 'search'));
     }
 
-    /**
-     * Soal 2 - CREATE: Form tambah partner baru.
-     */
+    // Form tambah partner
     public function create()
     {
         return view('admin.partners.create');
     }
 
-    /**
-     * Soal 2 - CREATE: Simpan partner baru ke database.
-     */
+    // Simpan partner baru
     public function store(Request $request)
     {
         $request->validate([
-            'name'     => 'required|string|max:255',
-            'logo_url' => 'nullable|url|max:500',
+            'name'  => 'required|string|max:255',
+            'logo'  => 'nullable|image|mimes:jpg,jpeg,png,webp,svg|max:2048',
         ]);
 
-        Partner::create($request->only(['name', 'logo_url']));
+        $logoPath = null;
+        if ($request->hasFile('logo')) {
+            $logoPath = $request->file('logo')->store('logos', 'public');
+        }
+
+        Partner::create([
+            'name'     => $request->name,
+            'logo_url' => $logoPath,
+        ]);
 
         return redirect()->route('admin.partners.index')
             ->with('success', 'Partner berhasil ditambahkan.');
     }
 
-    /**
-     * Soal 2 - UPDATE: Form edit partner.
-     */
+    // Form edit partner
     public function edit(Partner $partner)
     {
         return view('admin.partners.edit', compact('partner'));
     }
 
-    /**
-     * Soal 2 - UPDATE: Simpan perubahan partner ke database.
-     */
+    // Perbarui data partner
     public function update(Request $request, Partner $partner)
     {
         $request->validate([
-            'name'     => 'required|string|max:255',
-            'logo_url' => 'nullable|url|max:500',
+            'name'  => 'required|string|max:255',
+            'logo'  => 'nullable|image|mimes:jpg,jpeg,png,webp,svg|max:2048',
         ]);
 
-        $partner->update($request->only(['name', 'logo_url']));
+        $logoPath = $partner->logo_url;
+        if ($request->hasFile('logo')) {
+            // Hapus logo lama jika ada
+            if ($partner->logo_url) {
+                Storage::disk('public')->delete($partner->logo_url);
+            }
+            $logoPath = $request->file('logo')->store('logos', 'public');
+        }
+
+        $partner->update([
+            'name'     => $request->name,
+            'logo_url' => $logoPath,
+        ]);
 
         return redirect()->route('admin.partners.index')
             ->with('success', 'Partner berhasil diperbarui.');
     }
 
-    /**
-     * Soal 2 - DELETE: Hapus partner dari database.
-     */
+    // Hapus partner
     public function destroy(Partner $partner)
     {
+        // Hapus file logo dari storage jika ada
+        if ($partner->logo_url) {
+            Storage::disk('public')->delete($partner->logo_url);
+        }
+
         $partner->delete();
 
         return redirect()->route('admin.partners.index')

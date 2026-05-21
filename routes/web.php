@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\DashboardController;
@@ -38,17 +39,8 @@ Route::get('/bantuan', function () {
 // HALAMAN UTAMA
 // =====================================================
 
-// Halaman Default (Tugas Lama) - ditambahkan data partner & kategori (Soal 4)
-Route::get('/', function () {
-    $partners   = \App\Models\Partner::latest()->get();
-    $categories = \App\Models\Category::all();
-    return view('welcome', [
-        'nama'       => 'Wijdan Ula Rizki',
-        'nim'        => '24.12.3335',
-        'partners'   => $partners,
-        'categories' => $categories,
-    ]);
-});
+// Halaman publik utama (Soal 4 - menggunakan WelcomeController)
+Route::get('/', [WelcomeController::class, 'index']);
 
 // Halaman Beranda Event Hub (Tugas Baru)
 Route::get('/home', [HomeController::class, 'index'])->name('home');

@@ -8,7 +8,7 @@
 
 <div class="max-w-xl">
     <div class="bg-white rounded-[2.5rem] border border-slate-100 shadow-sm p-10">
-        <form action="{{ route('admin.partners.update', $partner->id) }}" method="POST">
+        <form action="{{ route('admin.partners.update', $partner->id) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
 
@@ -28,33 +28,37 @@
                 @enderror
             </div>
 
-            {{-- Logo URL --}}
-            <div class="mb-6">
-                <label for="logo_url" class="block text-sm font-bold text-slate-700 mb-2">
-                    URL Logo <span class="text-slate-400 font-normal">(opsional)</span>
-                </label>
-                <input type="url"
-                       id="logo_url"
-                       name="logo_url"
-                       value="{{ old('logo_url', $partner->logo_url) }}"
-                       placeholder="https://example.com/logo.png"
-                       class="w-full px-5 py-3 rounded-xl border @error('logo_url') border-rose-400 bg-rose-50 @else border-slate-200 @enderror focus:ring-2 focus:ring-indigo-500 outline-none transition text-sm">
-                @error('logo_url')
-                    <p class="mt-2 text-xs text-rose-600 font-medium">{{ $message }}</p>
-                @enderror
-            </div>
-
-            {{-- Preview Logo --}}
+            {{-- Preview Logo Saat Ini --}}
             @if($partner->logo_url)
-            <div class="mb-6 p-4 bg-slate-50 rounded-xl border border-slate-100">
-                <p class="text-xs font-bold text-slate-500 mb-3">Preview Logo Saat Ini:</p>
-                <img src="{{ $partner->logo_url }}" alt="{{ $partner->name }}"
-                     class="h-16 object-contain"
-                     onerror="this.parentElement.innerHTML='<p class=\'text-xs text-rose-400\'>URL logo tidak valid atau tidak dapat dimuat.</p>'">
+            <div class="mb-4 p-4 bg-slate-50 rounded-xl border border-slate-100">
+                <p class="text-xs font-bold text-slate-500 mb-3">Logo Saat Ini:</p>
+                <img src="{{ asset('storage/' . $partner->logo_url) }}"
+                     alt="{{ $partner->name }}"
+                     class="h-16 object-contain rounded-lg"
+                     onerror="this.parentElement.innerHTML='<p class=\'text-xs text-rose-400\'>Logo tidak dapat dimuat.</p>'">
             </div>
             @endif
 
-            {{-- Info kolom --}}
+            {{-- Upload Logo Baru --}}
+            <div class="mb-8">
+                <label for="logo" class="block text-sm font-bold text-slate-700 mb-2">
+                    {{ $partner->logo_url ? 'Ganti Logo' : 'Upload Logo' }}
+                    <span class="text-slate-400 font-normal">(opsional, maks. 2MB)</span>
+                </label>
+                <input type="file"
+                       id="logo"
+                       name="logo"
+                       accept="image/*"
+                       class="w-full px-4 py-3 rounded-xl border @error('logo') border-rose-400 bg-rose-50 @else border-slate-200 bg-slate-50 @enderror text-sm text-slate-600 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:bg-indigo-50 file:text-indigo-700 file:font-bold hover:file:bg-indigo-100 transition">
+                @error('logo')
+                    <p class="mt-2 text-xs text-rose-600 font-medium">{{ $message }}</p>
+                @enderror
+                @if($partner->logo_url)
+                    <p class="mt-2 text-xs text-slate-400">Biarkan kosong jika tidak ingin mengganti logo.</p>
+                @endif
+            </div>
+
+            {{-- Info --}}
             <div class="mb-6 p-4 bg-slate-50 rounded-xl text-xs text-slate-500 space-y-1 border border-slate-100">
                 <p><span class="font-bold">ID:</span> {{ $partner->id }}</p>
                 <p><span class="font-bold">Dibuat:</span> {{ $partner->created_at->format('d M Y, H:i') }}</p>

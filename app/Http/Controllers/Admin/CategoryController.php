@@ -9,9 +9,7 @@ use Illuminate\Support\Str;
 
 class CategoryController extends Controller
 {
-    /**
-     * Soal 1 & 3 - READ + Search: Menampilkan daftar kategori dengan pencarian.
-     */
+    // Tampilkan daftar kategori + pencarian
     public function index(Request $request)
     {
         $search = $request->input('search');
@@ -26,17 +24,13 @@ class CategoryController extends Controller
         return view('admin.categories.index', compact('categories', 'search'));
     }
 
-    /**
-     * Soal 1 - CREATE: Form tambah kategori baru.
-     */
+    // Form tambah kategori
     public function create()
     {
         return view('admin.categories.create');
     }
 
-    /**
-     * Soal 1 - CREATE: Simpan kategori baru ke database.
-     */
+    // Simpan kategori baru
     public function store(Request $request)
     {
         $request->validate([
@@ -52,17 +46,13 @@ class CategoryController extends Controller
             ->with('success', 'Kategori berhasil ditambahkan.');
     }
 
-    /**
-     * Soal 1 - UPDATE: Form edit kategori.
-     */
+    // Form edit kategori
     public function edit(Category $category)
     {
         return view('admin.categories.edit', compact('category'));
     }
 
-    /**
-     * Soal 1 - UPDATE: Simpan perubahan kategori ke database.
-     */
+    // Perbarui data kategori
     public function update(Request $request, Category $category)
     {
         $request->validate([
@@ -78,9 +68,7 @@ class CategoryController extends Controller
             ->with('success', 'Kategori berhasil diperbarui.');
     }
 
-    /**
-     * Soal 1 - DELETE: Hapus kategori dari database.
-     */
+    // Hapus kategori
     public function destroy(Category $category)
     {
         $category->delete();

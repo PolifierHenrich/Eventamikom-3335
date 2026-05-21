@@ -87,7 +87,7 @@
             @foreach($partners as $partner)
             <div class="bg-white rounded-2xl p-6 flex flex-col items-center justify-center border border-slate-100 shadow-sm hover:shadow-lg hover:-translate-y-1 transition duration-300 gap-3">
                 @if($partner->logo_url)
-                    <img src="{{ $partner->logo_url }}"
+                    <img src="{{ asset('storage/' . $partner->logo_url) }}"
                          alt="{{ $partner->name }}"
                          class="h-14 object-contain"
                          onerror="this.style.display='none'">

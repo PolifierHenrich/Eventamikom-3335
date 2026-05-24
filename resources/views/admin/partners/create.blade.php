@@ -8,7 +8,7 @@
 
 <div class="max-w-xl">
     <div class="bg-white rounded-[2.5rem] border border-slate-100 shadow-sm p-10">
-        <form action="{{ route('admin.partners.store') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('admin.partners.store') }}" method="POST">
             @csrf
 
             {{-- Nama Partner --}}
@@ -27,20 +27,21 @@
                 @enderror
             </div>
 
-            {{-- Upload Logo --}}
+            {{-- Logo URL --}}
             <div class="mb-8">
-                <label for="logo" class="block text-sm font-bold text-slate-700 mb-2">
-                    Logo Partner <span class="text-slate-400 font-normal">(opsional, maks. 2MB)</span>
+                <label for="logo_url" class="block text-sm font-bold text-slate-700 mb-2">
+                    URL Logo <span class="text-slate-400 font-normal">(opsional)</span>
                 </label>
-                <input type="file"
-                       id="logo"
-                       name="logo"
-                       accept="image/*"
-                       class="w-full px-4 py-3 rounded-xl border @error('logo') border-rose-400 bg-rose-50 @else border-slate-200 bg-slate-50 @enderror text-sm text-slate-600 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:bg-indigo-50 file:text-indigo-700 file:font-bold hover:file:bg-indigo-100 transition">
-                @error('logo')
+                <input type="url"
+                       id="logo_url"
+                       name="logo_url"
+                       value="{{ old('logo_url') }}"
+                       placeholder="https://example.com/logo.png"
+                       class="w-full px-5 py-3 rounded-xl border @error('logo_url') border-rose-400 bg-rose-50 @else border-slate-200 @enderror focus:ring-2 focus:ring-indigo-500 outline-none transition text-sm">
+                @error('logo_url')
                     <p class="mt-2 text-xs text-rose-600 font-medium">{{ $message }}</p>
                 @enderror
-                <p class="mt-2 text-xs text-slate-400">Format: JPG, PNG, WEBP, SVG</p>
+                <p class="mt-2 text-xs text-slate-400">Masukkan URL gambar logo partner (format: https://...)</p>
             </div>
 
             <div class="flex gap-3">

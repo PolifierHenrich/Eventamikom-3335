@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Partner;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 
 class PartnerController extends Controller
 {
@@ -34,19 +33,11 @@ class PartnerController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name'  => 'required|string|max:255',
-            'logo'  => 'nullable|image|mimes:jpg,jpeg,png,webp,svg|max:2048',
+            'name'     => 'required|string|max:255',
+            'logo_url' => 'nullable|url|max:500',
         ]);
 
-        $logoPath = null;
-        if ($request->hasFile('logo')) {
-            $logoPath = $request->file('logo')->store('logos', 'public');
-        }
-
-        Partner::create([
-            'name'     => $request->name,
-            'logo_url' => $logoPath,
-        ]);
+        Partner::create($request->only(['name', 'logo_url']));
 
         return redirect()->route('admin.partners.index')
             ->with('success', 'Partner berhasil ditambahkan.');
@@ -62,23 +53,11 @@ class PartnerController extends Controller
     public function update(Request $request, Partner $partner)
     {
         $request->validate([
-            'name'  => 'required|string|max:255',
-            'logo'  => 'nullable|image|mimes:jpg,jpeg,png,webp,svg|max:2048',
+            'name'     => 'required|string|max:255',
+            'logo_url' => 'nullable|url|max:500',
         ]);
 
-        $logoPath = $partner->logo_url;
-        if ($request->hasFile('logo')) {
-            // Hapus logo lama jika ada
-            if ($partner->logo_url) {
-                Storage::disk('public')->delete($partner->logo_url);
-            }
-            $logoPath = $request->file('logo')->store('logos', 'public');
-        }
-
-        $partner->update([
-            'name'     => $request->name,
-            'logo_url' => $logoPath,
-        ]);
+        $partner->update($request->only(['name', 'logo_url']));
 
         return redirect()->route('admin.partners.index')
             ->with('success', 'Partner berhasil diperbarui.');
@@ -87,11 +66,6 @@ class PartnerController extends Controller
     // Hapus partner
     public function destroy(Partner $partner)
     {
-        // Hapus file logo dari storage jika ada
-        if ($partner->logo_url) {
-            Storage::disk('public')->delete($partner->logo_url);
-        }
-
         $partner->delete();
 
         return redirect()->route('admin.partners.index')

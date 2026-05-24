@@ -63,7 +63,7 @@
                     </td>
                     <td class="px-8 py-6">
                         @if($partner->logo_url)
-                            <img src="{{ asset('storage/' . $partner->logo_url) }}" alt="{{ $partner->name }}"
+                            <img src="{{ $partner->logo_url }}" alt="{{ $partner->name }}"
                                  class="w-12 h-12 object-contain rounded-xl border border-slate-100 bg-white p-1"
                                  onerror="this.style.display='none'">
                         @else

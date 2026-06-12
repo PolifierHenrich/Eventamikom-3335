@@ -11,8 +11,13 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
-        //
+        // Pertemuan 8 - Authentication & Middleware
+        // Daftarkan AdminMiddleware dengan alias 'admin.auth'
+        $middleware->alias([
+            'admin.auth' => \App\Http\Middleware\AdminMiddleware::class,
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
-    
+
     })->create();
+

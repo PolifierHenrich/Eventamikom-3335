@@ -1,47 +1,53 @@
 @extends('layouts.admin')
 
 @section('title', 'Laporan Transaksi')
+@section('page_title', 'Laporan Transaksi')
+@section('page_subtitle', 'Pantau arus pemesanan dan status pembayaran tiket.')
 
 @section('content')
 
-{{-- Header --}}
-<header class="flex justify-between items-center mb-10">
-    <div>
-        <h1 class="text-3xl font-black">Laporan Transaksi</h1>
-        <p class="text-slate-500 font-medium">Pantau arus kas dan penjualan tiket Anda.</p>
-    </div>
-    <div class="flex gap-4">
-        <button class="px-6 py-3 border-2 border-slate-200 rounded-2xl font-bold hover:bg-white hover:border-indigo-600 hover:text-indigo-600 transition">
-            Ekspor Excel
+{{-- Filter Bar --}}
+<div class="bg-white rounded-3xl border border-slate-100 shadow-sm p-6 mb-6">
+    <form action="{{ route('admin.transactions.index') }}" method="GET" class="flex flex-wrap gap-4 items-center">
+
+        {{-- Search --}}
+        <div class="flex-1 min-w-[260px]">
+            <input type="text"
+                   name="search"
+                   value="{{ request('search') }}"
+                   placeholder="Cari Order ID, Nama, atau Email..."
+                   class="w-full px-5 py-3 rounded-xl border border-slate-200 bg-slate-50 focus:bg-white focus:ring-2 focus:ring-indigo-500 outline-none transition text-sm font-medium">
+        </div>
+
+        {{-- Filter Status --}}
+        <select name="status"
+                class="px-5 py-3 rounded-xl border border-slate-200 bg-slate-50 outline-none text-sm font-bold focus:ring-2 focus:ring-indigo-500 transition">
+            <option value="">Semua Status</option>
+            <option value="Sukses"  {{ request('status') === 'Sukses'  ? 'selected' : '' }}>Sukses</option>
+            <option value="Pending" {{ request('status') === 'Pending' ? 'selected' : '' }}>Pending</option>
+            <option value="Gagal"   {{ request('status') === 'Gagal'   ? 'selected' : '' }}>Gagal</option>
+        </select>
+
+        <button type="submit"
+                class="px-6 py-3 bg-indigo-600 text-white rounded-xl font-bold hover:bg-indigo-700 transition text-sm">
+            Filter
         </button>
-        <button class="px-6 py-3 bg-indigo-600 text-white rounded-2xl font-bold shadow-lg hover:bg-indigo-700 transition">
-            Unduh PDF
-        </button>
-    </div>
-</header>
+        <a href="{{ route('admin.transactions.index') }}"
+           class="px-5 py-3 border border-slate-200 rounded-xl font-bold text-slate-600 hover:bg-slate-50 transition text-sm">
+            Reset
+        </a>
+
+    </form>
+</div>
 
 {{-- Table --}}
 <div class="bg-white rounded-[2.5rem] border border-slate-100 shadow-sm overflow-hidden">
 
-    {{-- Filter Bar --}}
-    <div class="px-8 py-6 bg-slate-50/50 border-b flex flex-wrap gap-4 items-center">
-        <div class="flex-1 min-w-[300px]">
-            <input type="text" placeholder="Cari Order ID, Nama, atau Email..."
-                   class="w-full px-5 py-3 rounded-xl border-slate-200 border bg-white focus:ring-2 focus:ring-indigo-500 outline-none transition text-sm font-medium">
-        </div>
-        <div class="flex gap-2">
-            <select class="px-5 py-3 rounded-xl border-slate-200 border bg-white outline-none text-sm font-bold">
-                <option>Semua Status</option>
-                <option>Success</option>
-                <option>Pending</option>
-                <option>Expired</option>
-            </select>
-            <select class="px-5 py-3 rounded-xl border-slate-200 border bg-white outline-none text-sm font-bold">
-                <option>Bulan Ini</option>
-                <option>Bulan Lalu</option>
-                <option>Tahun 2024</option>
-            </select>
-        </div>
+    <div class="px-8 py-5 border-b flex justify-between items-center">
+        <h2 class="font-black text-lg">Semua Transaksi</h2>
+        <span class="text-sm text-slate-400 font-medium">
+            {{ $transactions->total() }} transaksi ditemukan
+        </span>
     </div>
 
     <div class="overflow-x-auto">
@@ -57,71 +63,76 @@
                 </tr>
             </thead>
             <tbody class="divide-y border-t">
+                @forelse($transactions as $trx)
                 <tr class="hover:bg-slate-50/50 transition">
                     <td class="px-8 py-6">
-                        <span class="font-mono font-bold text-indigo-600 bg-indigo-50 px-3 py-1 rounded-lg text-sm">#TRX-99210</span>
+                        <span class="font-mono font-bold text-indigo-600 bg-indigo-50 px-3 py-1 rounded-lg text-sm">
+                            #{{ $trx->order_id }}
+                        </span>
                     </td>
                     <td class="px-8 py-6">
-                        <p class="font-bold text-slate-800">Donni Prabowo</p>
-                        <p class="text-xs text-slate-500">donni@example.com</p>
+                        <p class="font-bold text-slate-800">{{ $trx->customer_name }}</p>
+                        <p class="text-xs text-slate-500">{{ $trx->customer_email }}</p>
+                        <p class="text-xs text-slate-400">{{ $trx->customer_phone }}</p>
                     </td>
                     <td class="px-8 py-6">
-                        <p class="font-medium text-slate-700">Jazz Night 2024</p>
+                        <p class="font-medium text-slate-700 max-w-[180px] truncate">
+                            {{ $trx->event->title ?? '-' }}
+                        </p>
                     </td>
-                    <td class="px-8 py-6 text-sm text-slate-500">26 Mar 2024, 17:45</td>
+                    <td class="px-8 py-6 text-sm text-slate-500">
+                        {{ $trx->created_at->translatedFormat('d M Y') }}<br>
+                        <span class="text-xs">{{ $trx->created_at->format('H:i') }} WIB</span>
+                    </td>
                     <td class="px-8 py-6">
-                        <span class="px-3 py-1 bg-green-100 text-green-700 rounded-lg text-xs font-bold uppercase ring-1 ring-green-200">Success</span>
+                        @php
+                            $statusClass = match($trx->status) {
+                                'Sukses'  => 'bg-green-100 text-green-700 ring-green-200',
+                                'Pending' => 'bg-orange-100 text-orange-700 ring-orange-200',
+                                'Gagal'   => 'bg-red-100 text-red-700 ring-red-200',
+                                default   => 'bg-slate-100 text-slate-600 ring-slate-200',
+                            };
+                        @endphp
+                        <span class="px-3 py-1 {{ $statusClass }} rounded-lg text-xs font-black uppercase ring-1">
+                            {{ $trx->status }}
+                        </span>
                     </td>
-                    <td class="px-8 py-6 text-right font-black text-slate-900">Rp 155.000</td>
+                    <td class="px-8 py-6 text-right font-black text-slate-900">
+                        @if($trx->total_price > 0)
+                            Rp {{ number_format($trx->total_price, 0, ',', '.') }}
+                        @else
+                            <span class="text-green-600">GRATIS</span>
+                        @endif
+                    </td>
                 </tr>
-                <tr class="hover:bg-slate-50/50 transition">
-                    <td class="px-8 py-6">
-                        <span class="font-mono font-bold bg-slate-100 px-3 py-1 rounded-lg text-sm">#TRX-99209</span>
+                @empty
+                <tr>
+                    <td colspan="6" class="px-8 py-16 text-center">
+                        <svg class="w-12 h-12 text-slate-300 mx-auto mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                        </svg>
+                        <p class="text-slate-500 font-bold">Belum ada transaksi.</p>
+                        <p class="text-slate-400 text-sm mt-1">Transaksi akan muncul setelah ada pemesanan.</p>
                     </td>
-                    <td class="px-8 py-6">
-                        <p class="font-bold text-slate-800">Maya Sari</p>
-                        <p class="text-xs text-slate-500">maya@example.com</p>
-                    </td>
-                    <td class="px-8 py-6">
-                        <p class="font-medium text-slate-700">AI & Future Workshop</p>
-                    </td>
-                    <td class="px-8 py-6 text-sm text-slate-500">26 Mar 2024, 15:20</td>
-                    <td class="px-8 py-6">
-                        <span class="px-3 py-1 bg-orange-100 text-orange-700 rounded-lg text-xs font-bold uppercase ring-1 ring-orange-200">Pending</span>
-                    </td>
-                    <td class="px-8 py-6 text-right font-black text-slate-900">Rp 55.000</td>
                 </tr>
-                <tr class="hover:bg-slate-50/50 transition">
-                    <td class="px-8 py-6">
-                        <span class="font-mono font-bold text-indigo-600 bg-indigo-50 px-3 py-1 rounded-lg text-sm">#TRX-99208</span>
-                    </td>
-                    <td class="px-8 py-6">
-                        <p class="font-bold text-slate-800">Budi Santoso</p>
-                        <p class="text-xs text-slate-500">budi@example.com</p>
-                    </td>
-                    <td class="px-8 py-6">
-                        <p class="font-medium text-slate-700">Hackathon 2024</p>
-                    </td>
-                    <td class="px-8 py-6 text-sm text-slate-500">25 Mar 2024, 10:00</td>
-                    <td class="px-8 py-6">
-                        <span class="px-3 py-1 bg-slate-100 text-slate-600 rounded-lg text-xs font-bold uppercase ring-1 ring-slate-200">Free</span>
-                    </td>
-                    <td class="px-8 py-6 text-right font-black text-slate-900">Rp 0</td>
-                </tr>
+                @endforelse
             </tbody>
         </table>
     </div>
 
     {{-- Pagination --}}
+    @if($transactions->hasPages())
     <div class="px-8 py-6 bg-slate-50/50 border-t flex justify-between items-center">
-        <p class="text-sm text-slate-500 font-medium">Menampilkan 3 dari 124 transaksi</p>
+        <p class="text-sm text-slate-500 font-medium">
+            Menampilkan {{ $transactions->firstItem() }}–{{ $transactions->lastItem() }}
+            dari {{ $transactions->total() }} transaksi
+        </p>
         <div class="flex gap-2">
-            <button class="px-4 py-2 border rounded-xl text-sm font-bold opacity-50 cursor-not-allowed">Previous</button>
-            <button class="px-4 py-2 bg-indigo-600 text-white rounded-xl shadow-md text-sm font-bold">1</button>
-            <button class="px-4 py-2 border rounded-xl hover:bg-white transition text-sm font-bold">2</button>
-            <button class="px-4 py-2 border rounded-xl hover:bg-white transition text-sm font-bold">Next</button>
+            {{ $transactions->links() }}
         </div>
     </div>
+    @endif
+
 </div>
 
 @endsection

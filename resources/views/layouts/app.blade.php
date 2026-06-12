@@ -28,11 +28,10 @@
                 </a>
                 <div class="hidden md:flex items-center gap-6">
                     <a href="{{ route('home') }}" class="text-sm font-medium transition {{ request()->routeIs('home') ? 'text-indigo-600' : 'text-slate-600 hover:text-indigo-600' }}">Home</a>
-                    <a href="{{ route('events.show') }}" class="text-sm font-medium transition {{ request()->routeIs('events.*') ? 'text-indigo-600' : 'text-slate-600 hover:text-indigo-600' }}">Events</a>
-                    <a href="{{ route('checkout') }}" class="text-sm font-medium transition {{ request()->routeIs('checkout') ? 'text-indigo-600' : 'text-slate-600 hover:text-indigo-600' }}">Checkout</a>
+                    <a href="{{ route('home') }}#events" class="text-sm font-medium transition {{ request()->routeIs('events.*') ? 'text-indigo-600' : 'text-slate-600 hover:text-indigo-600' }}">Events</a>
                     <a href="{{ route('ticket') }}" class="text-sm font-medium transition {{ request()->routeIs('ticket') ? 'text-indigo-600' : 'text-slate-600 hover:text-indigo-600' }}">Tiket Saya</a>
                 </div>
-                <a href="{{ route('events.show') }}" class="bg-indigo-600 text-white text-sm font-semibold px-4 py-2 rounded-lg hover:bg-indigo-700 transition">
+                <a href="{{ route('home') }}#events" class="bg-indigo-600 text-white text-sm font-semibold px-4 py-2 rounded-lg hover:bg-indigo-700 transition">
                     Jelajahi Event
                 </a>
             </div>

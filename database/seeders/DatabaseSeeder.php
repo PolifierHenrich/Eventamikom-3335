@@ -8,7 +8,10 @@ class DatabaseSeeder extends Seeder
 {
     public function run(): void
     {
-        // 1. Akun Admin
+        // Jalankan PartnerSeeder
+        $this->call(PartnerSeeder::class);
+
+
         \App\Models\User::firstOrCreate(
             ['email' => 'admin@amikom.ac.id'],
             [

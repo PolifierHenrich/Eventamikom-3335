@@ -10,6 +10,15 @@ use Illuminate\Http\Request;
 class EventController extends Controller
 {
     /**
+     * Menentukan disk storage yang digunakan.
+     * Lokal: 'public' | Laravel Cloud (AWS_BUCKET terisi): 'r2'
+     */
+    private function storageDisk(): string
+    {
+        return env('AWS_BUCKET') ? 'r2' : 'public';
+    }
+
+    /**
      * 5.4.4 READ - Menampilkan daftar event dengan paginasi
      */
     public function index()
@@ -43,9 +52,13 @@ class EventController extends Controller
             'poster'      => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
         ]);
 
-        // Upload poster jika ada file yang dikirim
+        // Hapus key 'poster' dari $data (bukan nama kolom di database)
+        unset($data['poster']);
+
+        // Upload poster ke disk yang sesuai (lokal: public | cloud: r2)
         if ($request->hasFile('poster')) {
-            $data['poster_path'] = $request->file('poster')->store('posters', 'public');
+            $data['poster_path'] = $request->file('poster')
+                ->store('posters', $this->storageDisk());
         }
 
         \App\Models\Event::create($data);
@@ -79,12 +92,16 @@ class EventController extends Controller
             'poster'      => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
         ]);
 
+        // Hapus key 'poster' dari $data (bukan nama kolom di database)
+        unset($data['poster']);
+
         // Upload poster baru & hapus yang lama jika ada file baru
         if ($request->hasFile('poster')) {
             if ($event->poster_path) {
-                Storage::disk('public')->delete($event->poster_path);
+                Storage::disk($this->storageDisk())->delete($event->poster_path);
             }
-            $data['poster_path'] = $request->file('poster')->store('posters', 'public');
+            $data['poster_path'] = $request->file('poster')
+                ->store('posters', $this->storageDisk());
         }
 
         $event->update($data);
@@ -98,6 +115,10 @@ class EventController extends Controller
      */
     public function destroy(Event $event)
     {
+        if ($event->poster_path) {
+            Storage::disk($this->storageDisk())->delete($event->poster_path);
+        }
+
         $event->delete();
 
         return redirect()->route('admin.events.index')

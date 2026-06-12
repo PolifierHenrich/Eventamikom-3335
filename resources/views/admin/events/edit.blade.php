@@ -82,7 +82,7 @@
             @if($event->poster_path)
                 <p class="text-sm text-slate-500 mt-2">
                     Poster saat ini:
-                    <a href="{{ asset('storage/' . $event->poster_path) }}" target="_blank"
+                    <a href="{{ Storage::url($event->poster_path) }}" target="_blank"
                        class="text-indigo-600 hover:underline">Lihat Poster</a>
                 </p>
             @endif

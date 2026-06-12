@@ -29,7 +29,7 @@
                     <td class="px-8 py-6 font-bold text-slate-400">{{ $events->firstItem() + $index }}</td>
                     <td class="px-8 py-6">
                         @if($event->poster_path)
-                            <img src="{{ asset('storage/' . $event->poster_path) }}"
+                            <img src="{{ Storage::url($event->poster_path) }}"
                                  class="w-16 h-20 rounded-xl object-cover shadow-sm">
                         @else
                             <div class="w-16 h-20 rounded-xl bg-indigo-50 flex items-center justify-center text-indigo-300">

@@ -34,7 +34,31 @@ Halaman User :
 https://eventamikom-3335-main-oakxz4.free.laravel.cloud/home
 
 User : https://eventamikom-3335-main-oakxz4.free.laravel.cloud/home
+
+# Tugas 8
+Authentication & Middleware
+
+Login Admin : https://eventamikom-3335-main-oakxz4.free.laravel.cloud/admin/login
+
+Halaman Admin (setelah login) : https://eventamikom-3335-main-oakxz4.free.laravel.cloud/admin
+
+Kelola Kategori : https://eventamikom-3335-main-oakxz4.free.laravel.cloud/admin/categories
+
+Kelola Partner : https://eventamikom-3335-main-oakxz4.free.laravel.cloud/admin/partners
+
+# Tugas 10
+Checkout Logic & Transaksi
+
+Halaman User (Event Hub) : https://eventamikom-3335-main-oakxz4.free.laravel.cloud/home
+
+Detail Event : https://eventamikom-3335-main-oakxz4.free.laravel.cloud/event/1
+
+Checkout : https://eventamikom-3335-main-oakxz4.free.laravel.cloud/checkout/1
+
+Laporan Transaksi Admin : https://eventamikom-3335-main-oakxz4.free.laravel.cloud/admin/transactions
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+
 
 <p align="center">
 <a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>

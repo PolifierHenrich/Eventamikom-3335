@@ -57,14 +57,16 @@ Checkout : https://eventamikom-3335-main-oakxz4.free.laravel.cloud/checkout/1
 
 Laporan Transaksi Admin : https://eventamikom-3335-main-oakxz4.free.laravel.cloud/admin/transactions
 
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
-
 #Tugas 11 
+
 Deploy Infinity Free 
 
 Halaman : https://eventamikomhub3335.infinityfreeapp.com/
 
 Halaman Admin : https://eventamikomhub3335.infinityfreeapp.com/admin
+
+<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+
 
 <p align="center">
 <a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>

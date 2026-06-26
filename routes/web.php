@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\Auth\LoginController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\DashboardController;
@@ -11,34 +12,17 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\PartnerController;
 
 // =====================================================
-// TUGAS LAMA (Pertemuan 2 - Routing Dasar)
+// TUGAS LAMA (Pertemuan 2)
 // =====================================================
-
-Route::get('/tentang', function () {
-    return view('tentang');
-});
-
-Route::get('/kontak', function () {
-    return view('contact');
-});
-
-Route::get('/profil', function () {
-    return view('profil');
-});
-
-Route::get('/katalog', function () {
-    return view('katalog');
-});
-
-Route::get('/bantuan', function () {
-    return view('bantuan');
-});
+Route::get('/tentang', fn() => view('tentang'));
+Route::get('/kontak',  fn() => view('contact'));
+Route::get('/profil',  fn() => view('profil'));
+Route::get('/katalog', fn() => view('katalog'));
+Route::get('/bantuan', fn() => view('bantuan'));
 
 // =====================================================
-// HALAMAN UTAMA (Pertemuan 3 - Controller & Blade)
+// HALAMAN UTAMA
 // =====================================================
-
-// Halaman Default (Tugas Lama) - tetap seperti aslinya
 Route::get('/', function () {
     return view('welcome', [
         'nama' => 'Wijdan Ula Rizki',
@@ -46,54 +30,41 @@ Route::get('/', function () {
     ]);
 });
 
-// Halaman Beranda Event Hub - Menampilkan events dari database (Pertemuan 6)
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 // =====================================================
-// USER AREA (Pertemuan 5 & 6 - Eloquent & Routing)
+// USER AREA — Event & Checkout
 // =====================================================
-
-// Halaman Detail Event - Dinamis berdasarkan ID
 Route::get('/event/{id}', [EventController::class, 'show'])->name('events.show');
 
-// Halaman Checkout - GET (tampilkan form)
-Route::get('/checkout/{id}', [EventController::class, 'checkout'])->name('checkout');
+// Checkout menggunakan CheckoutController (Pertemuan 11 - Midtrans)
+Route::get('/checkout/{id}',  [CheckoutController::class, 'show'])->name('checkout');
+Route::post('/checkout/{id}', [CheckoutController::class, 'store'])->name('checkout.store');
 
-// Halaman Checkout - POST (Pertemuan 10 - Simpan transaksi)
-Route::post('/checkout/{id}', [EventController::class, 'storeCheckout'])->name('checkout.store');
+// Halaman Pembayaran Midtrans Snap (Pertemuan 11)
+Route::get('/payment/{order_id}', [CheckoutController::class, 'payment'])->name('checkout.payment');
 
-// Halaman E-Ticket (tampilkan tiket berdasarkan order_id)
-Route::get('/my-ticket', [EventController::class, 'ticket'])->name('ticket');
-Route::get('/my-ticket/{orderId}', [EventController::class, 'showTicket'])->name('ticket.show');
+// Halaman Sukses Pembayaran (Pertemuan 11)
+Route::get('/success/{order_id}', [CheckoutController::class, 'success'])->name('checkout.success');
+
+// Halaman E-Ticket
+Route::get('/my-ticket',          [EventController::class, 'ticket'])->name('ticket');
+Route::get('/my-ticket/{orderId}',[EventController::class, 'showTicket'])->name('ticket.show');
 
 // =====================================================
-// PERTEMUAN 8 - AUTHENTICATION
-// Rute Login & Logout Admin (TANPA middleware - akses bebas)
+// AUTHENTICATION
 // =====================================================
-
-Route::get('/admin/login', [LoginController::class, 'showLoginForm'])->name('admin.login');
+Route::get('/admin/login',  [LoginController::class, 'showLoginForm'])->name('admin.login');
 Route::post('/admin/login', [LoginController::class, 'login'])->name('admin.login.post');
-Route::post('/admin/logout', [LoginController::class, 'logout'])->name('admin.logout');
+Route::post('/admin/logout',[LoginController::class, 'logout'])->name('admin.logout');
 
 // =====================================================
-// ADMIN AREA - Diproteksi Middleware 'admin.auth'
-// (Pertemuan 8 - Middleware)
+// ADMIN AREA
 // =====================================================
-
 Route::prefix('admin')->name('admin.')->middleware('admin.auth')->group(function () {
-
-    // Dashboard Admin - Statistik dari database (Pertemuan 6)
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
-
-    // Kelola Event Admin - CRUD lengkap (Pertemuan 5)
     Route::resource('events', AdminEventController::class);
-
-    // Laporan Transaksi (Pertemuan 10 & 12)
     Route::get('/transactions', [TransactionController::class, 'index'])->name('transactions.index');
-
-    // Kelola Kategori - CRUD penuh (Pertemuan 8)
-    Route::resource('categories', CategoryController::class)->only(['index', 'store', 'update', 'destroy']);
-
-    // Kelola Partner - CRUD
+    Route::resource('categories', CategoryController::class)->only(['index','store','update','destroy']);
     Route::resource('partners', PartnerController::class);
 });

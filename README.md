@@ -59,11 +59,13 @@ Laporan Transaksi Admin : https://eventamikom-3335-main-oakxz4.free.laravel.clou
 
 # Tugas 11
 
-Deploy Infinity Free 
+Deploy Infinity Free & Integrasi Payment Gateway (Midtrans)
 
-Halaman : https://eventamikomhub3335.infinityfreeapp.com/
+Halaman Home (Utama) : https://eventamikomhub3335.infinityfreeapp.com/home
 
 Halaman Admin : https://eventamikomhub3335.infinityfreeapp.com/admin
+
+Halaman Checkout & Midtrans : https://eventamikomhub3335.infinityfreeapp.com/checkout/1
 
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
